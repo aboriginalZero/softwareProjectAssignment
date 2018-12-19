@@ -18,6 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NewsRepository extends JpaRepository<News, Long> {
     @Query("select t from News t where t.title like :title")
-    Page<Users> findByTitle(@Param("title") String title, Pageable pageable);
+    Page<News> findByTitle(@Param("title") String title, Pageable pageable);
 
 }

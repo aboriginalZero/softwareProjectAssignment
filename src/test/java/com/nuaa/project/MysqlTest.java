@@ -64,7 +64,7 @@ public class MysqlTest {
 
         Comments comments = new Comments();
         comments.setContent("评论内容");
-//        comments.setUsers(users);
+//        comments.setUsers(comments);
         comments.setNews(news);
         commentsRepository.save(comments);
         Assert.notNull(comments.getId());

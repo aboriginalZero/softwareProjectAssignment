@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentsRepository extends JpaRepository<Comments,Long> {
     @Query("select t from Comments t where t.content like :content")
-    Page<Comments> findByContent(@Param("content")String content, Pageable pageRequest);
+    Page<Comments> findByContent(@Param("content")String content, Pageable pageable);
 
 
     Comments findByContent(String content);

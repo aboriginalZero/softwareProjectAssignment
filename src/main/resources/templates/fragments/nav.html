@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="nav">
+
+    <div class="columnLeftMenu">
+
+        <h6 ><span class="f-right"></span>系统管理</h6>
+        <ul >
+            <li><a th:classappend="${page == 'news/index' ? 'currentPageNav' : ''}" th:href="@{/news/index}">新闻管理</a></li>
+            <li><a th:classappend="${page == 'comments/index' ? 'currentPageNav' : ''}" th:href="@{/comments/index}">评论管理</a></li>
+            <li><a th:classappend="${page == 'users/index' ? 'currentPageNav' : ''}" th:href="@{/users/index}">用户管理</a></li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>

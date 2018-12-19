@@ -9,7 +9,7 @@ import java.util.Date;
  * @Date: 2018/12/18 19:07
  * @Description:
  */
-public class UsersQo {
+public class UsersQo extends PageQo{
     private Long id;
     private String name;
     private String password;
