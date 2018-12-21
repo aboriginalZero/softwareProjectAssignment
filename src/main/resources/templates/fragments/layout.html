@@ -6,8 +6,10 @@
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-store"/>
     <meta http-equiv="Expires" content="0" />
-    <!--<meta name="_csrf" th:content="${_csrf.token}"/>-->
-    <!--<meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">安全设计</title>
     <link th:href="@{/styles/global.css}"  rel="stylesheet" type="text/css"/>
     <link th:href="@{/styles/index.css}" rel="stylesheet"  type="text/css"/>

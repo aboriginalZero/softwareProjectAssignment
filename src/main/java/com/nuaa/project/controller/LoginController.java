@@ -1,5 +1,6 @@
 package com.nuaa.project.controller;
 
+import com.nuaa.project.util.ImageCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,52 +19,53 @@ import java.util.Map;
 @Controller
 public class LoginController {
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
+    //生成图形验证码
+    @RequestMapping(value = "/images/imagecode")
+    public String imagecode(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        OutputStream os = response.getOutputStream();
+        Map<String, Object> map = ImageCode.getImageCode(60, 20, os);
 
-//    @RequestMapping(value = "/images/imagecode")
-//    public String imagecode(HttpServletRequest request, HttpServletResponse response)
-//            throws Exception {
-//        OutputStream os = response.getOutputStream();
-//        Map<String,Object> map = ImageCode.getImageCode(60, 20, os);
-//
-//        String simpleCaptcha = "simpleCaptcha";
-//        request.getSession().setAttribute(simpleCaptcha, map.get("strEnsure").toString().toLowerCase());
-//        request.getSession().setAttribute("codeTime",new Date().getTime());
-//
-//        try {
-//            ImageIO.write((BufferedImage) map.get("image"), "JPEG", os);
-//        } catch (IOException e) {
-//            return "";
-//        }
-//        return null;
-//    }
-//
-//    @RequestMapping(value = "/checkcode")
-//    @ResponseBody
-//    public String checkcode(HttpServletRequest request, HttpSession session)
-//            throws Exception {
-//        String checkCode = request.getParameter("checkCode");
-//        Object cko = session.getAttribute("simpleCaptcha") ; //验证码对象
-//        if(cko == null){
-//            request.setAttribute("errorMsg", "验证码已失效，请重新输入！");
-//            return "验证码已失效，请重新输入！";
-//        }
-//
-//        String captcha = cko.toString();
-//        Date now = new Date();
-//        Long codeTime = Long.valueOf(session.getAttribute("codeTime")+"");
-//        if(StringUtils.isEmpty(checkCode) || captcha == null ||  !(checkCode.equalsIgnoreCase(captcha))){
-//            request.setAttribute("errorMsg", "验证码错误！");
-//            return "验证码错误！";
-//        }else if ((now.getTime()-codeTime)/1000/60>5){//验证码有效时长为5分钟
-//            request.setAttribute("errorMsg", "验证码已失效，请重新输入！");
-//            return "验证码已失效，请重新输入！";
-//        }else {
-//            session.removeAttribute("simpleCaptcha");
-//            return "1";
-//        }
-//    }
+        String simpleCaptcha = "simpleCaptcha";
+        request.getSession().setAttribute(simpleCaptcha, map.get("strEnsure").toString().toLowerCase());
+        request.getSession().setAttribute("codeTime", new Date().getTime());
+
+        try {
+            ImageIO.write((BufferedImage) map.get("image"), "JPEG", os);
+        } catch (IOException e) {
+            return "";
+        }
+        return null;
+    }
+
+    //对图形验证码的验证
+    @RequestMapping(value = "/checkcode")
+    @ResponseBody
+    public String checkcode(HttpServletRequest request, HttpSession session)
+            throws Exception {
+        String checkCode = request.getParameter("checkCode");
+        Object cko = session.getAttribute("simpleCaptcha"); //验证码对象
+        if (cko == null) {
+            request.setAttribute("errorMsg", "验证码已失效，请重新输入！");
+            return "验证码已失效，请重新输入！";
+        }
+
+        String captcha = cko.toString();
+        Date now = new Date();
+        Long codeTime = Long.valueOf(session.getAttribute("codeTime") + "");
+        if (StringUtils.isEmpty(checkCode) || captcha == null || !(checkCode.equalsIgnoreCase(captcha))) {
+            request.setAttribute("errorMsg", "验证码错误！");
+            return "验证码错误！";
+        } else if ((now.getTime() - codeTime) / 1000 / 60 > 5) {//验证码有效时长为5分钟
+            request.setAttribute("errorMsg", "验证码已失效，请重新输入！");
+            return "验证码已失效，请重新输入！";
+        } else {
+            session.removeAttribute("simpleCaptcha");
+            return "1";
+        }
+    }
 }

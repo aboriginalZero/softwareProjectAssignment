@@ -10,6 +10,7 @@ textarea{overflow:-moz-scrollbars-vertical;}
 ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,em,span{ margin:0; padding:0; list-style:none}
 table{border:0;padding:0;margin:0;border-collapse:collapse;}
 em{font-style:normal}
+.f-middle{float: none}
 .f-left{float:left;}
 .f-right{float:right;}
 .c-50a73f{color:#50a73f;}

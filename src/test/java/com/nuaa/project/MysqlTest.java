@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
@@ -48,8 +49,9 @@ public class MysqlTest {
 
         Users users = new Users();
         users.setName("abc");
+        BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+        users.setPassword(bpe.encode("abc"));
 //        这边加密处理还没做
-        users.setPassword("abc");
         users.setEmail("350446550@qq.com");
         usersRepository.save(users);
         Assert.notNull(users.getId());
@@ -57,7 +59,7 @@ public class MysqlTest {
         Users users1 = new Users();
         users1.setName("cyw");
 //        这边加密处理还没做
-        users1.setPassword("cyw");
+        users1.setPassword(bpe.encode("cyw"));
         users1.setEmail("847681488@qq.com");
         usersRepository.save(users1);
         Assert.notNull(users1.getId());
