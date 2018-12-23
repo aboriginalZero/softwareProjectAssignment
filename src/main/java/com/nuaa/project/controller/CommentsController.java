@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -46,8 +47,10 @@ public class CommentsController {
 
 
     @RequestMapping("/index")
-    public String index(Model model, Comments comments) {
-        model.addAttribute("comments", comments);
+    public String index(Model model, Principal users) {
+
+        model.addAttribute("users",users);
+//        model.addAttribute("comments", comments);
 
         model.addAttribute("newcomments", true);
         model.addAttribute("editcomments", true);

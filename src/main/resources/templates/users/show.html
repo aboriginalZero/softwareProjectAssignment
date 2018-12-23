@@ -5,6 +5,8 @@
             <th>用户名</th>
             <td width="240"><input class="inp-list w-200 clear-mr f-middle" type="text" th:value="${users.name}"
                                    readonly="true"/></td>
+        </tr>
+        <tr>
             <th>创建日期</th>
             <td>
                 <input onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text"
@@ -12,7 +14,6 @@
                        th:value="${users.createdate} ? ${#dates.format(users.createdate,'yyyy-MM-dd HH:mm:ss')} :''"
                        readonly="true"/>
             </td>
-
         </tr>
         <!--<tr>-->
             <!--<th>邮箱</th>-->

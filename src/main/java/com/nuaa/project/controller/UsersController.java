@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -45,40 +46,40 @@ public class UsersController {
 
     @RequestMapping("/index")
     public String index(Model model, Principal users) {
-        Authentication authentication = (Authentication)users;
+        Authentication authentication = (Authentication) users;
         List<String> userroles = new ArrayList<>();
-        for(GrantedAuthority ga : authentication.getAuthorities()){
+        for (GrantedAuthority ga : authentication.getAuthorities()) {
             userroles.add(ga.getAuthority());
         }
 
-        boolean newusers=false,editusers=false,deleteusers=false;
-        if(!StringUtils.isEmpty(urlroles)) {
+        boolean newusers = false, editusers = false, deleteusers = false;
+        if (!StringUtils.isEmpty(urlroles)) {
             String[] resouces = urlroles.split(";");
             for (String resource : resouces) {
                 String[] urls = resource.split("=");
-                if(urls[0].indexOf("new") > 0){
+                if (urls[0].indexOf("new") > 0) {
                     String[] newroles = urls[1].split(",");
-                    for(String str : newroles){
+                    for (String str : newroles) {
                         str = str.trim();
-                        if(userroles.contains(str)){
+                        if (userroles.contains(str)) {
                             newusers = true;
                             break;
                         }
                     }
-                }else if(urls[0].indexOf("edit") > 0){
+                } else if (urls[0].indexOf("edit") > 0) {
                     String[] editoles = urls[1].split(",");
-                    for(String str : editoles){
+                    for (String str : editoles) {
                         str = str.trim();
-                        if(userroles.contains(str)){
+                        if (userroles.contains(str)) {
                             editusers = true;
                             break;
                         }
                     }
-                }else if(urls[0].indexOf("delete") > 0){
+                } else if (urls[0].indexOf("delete") > 0) {
                     String[] deleteroles = urls[1].split(",");
-                    for(String str : deleteroles){
+                    for (String str : deleteroles) {
                         str = str.trim();
-                        if(userroles.contains(str)){
+                        if (userroles.contains(str)) {
                             deleteusers = true;
                             break;
                         }
@@ -95,16 +96,7 @@ public class UsersController {
 
         return "users/index";
     }
-//    @RequestMapping("/index")
-//    public String index(Model model, Users users) {
-//        model.addAttribute("users", users);
-//
-//        model.addAttribute("newusers", true);
-//        model.addAttribute("editusers", true);
-//        model.addAttribute("deleteusers", true);
-//
-//        return "users/index";
-//    }
+
 
     @RequestMapping("/list")
     @ResponseBody
@@ -126,41 +118,49 @@ public class UsersController {
     }
 
     @RequestMapping("/new")
-    public String create(Model model,Users users){
-        model.addAttribute("users",users);
+    public String create(Model model, Users users) {
+        model.addAttribute("users", users);
         return "users/new";
     }
 
-    @RequestMapping(value="/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(Users users) throws Exception{
+    public String save(Users users) throws Exception {
         users.setCreatedate(new Date());
+        BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+        System.out.println("加密前" + users.getPassword());
+        users.setPassword(bpe.encode(users.getPassword()));
+        System.out.println("加密前" + users.getPassword());
         usersRepository.save(users);
-        logger.info("新增->ID="+users.getId());
+        logger.info("新增->ID=" + users.getId());
         return "1";
     }
 
-    @RequestMapping(value="/edit/{id}")
-    public String update(ModelMap model,@PathVariable Long id){
+    @RequestMapping(value = "/edit/{id}")
+    public String update(ModelMap model, @PathVariable Long id) {
         Users users = usersRepository.findOne(id);
 
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
         return "users/edit";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/update")
+    @RequestMapping(method = RequestMethod.POST, value = "/update")
     @ResponseBody
-    public String update(Users users) throws Exception{
+    public String update(Users users) throws Exception {
+        BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+        System.out.println("加密前" + users.getPassword());
+        users.setPassword(bpe.encode(users.getPassword()));
+        System.out.println("加密前" + users.getPassword());
         usersRepository.save(users);
-        logger.info("修改->ID="+ users.getId());
+        logger.info("修改->ID=" + users.getId());
         return "1";
     }
 
-    @RequestMapping(value="/delete/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String delete(@PathVariable Long id) throws Exception{
+    public String delete(@PathVariable Long id) throws Exception {
         usersRepository.delete(id);
-        logger.info("删除->ID="+id);
+        logger.info("删除->ID=" + id);
         return "1";
     }
 

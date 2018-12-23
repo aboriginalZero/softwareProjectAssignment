@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
 import java.util.Date;
 
 /**
@@ -37,8 +38,10 @@ public class NewsController {
     private NewsRepository newsRepository;
 
     @RequestMapping("/index")
-    public String index(Model model, News news) {
-        model.addAttribute("news", news);
+    public String index(Model model, Principal users) {
+
+        model.addAttribute("users",users);
+//        model.addAttribute("news", news);
 
         model.addAttribute("newnews", true);
         model.addAttribute("editnews", true);

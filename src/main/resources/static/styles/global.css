@@ -40,7 +40,7 @@ em{font-style:normal}
 .locationLine{height:35px;line-height:40px;margin:0 auto;overflow:hidden;width:1002px;}
 .locationLine em{color:#53b71d;font-weight:bold;}
 .globalMainBox{margin:0 auto;width:1002px;overflow:hidden;table-layout:fixed;border:none;border-collapse:collapse;}
-.new-nav { width:692px; height:30px; line-height:30px; overflow:hidden; margin-top:3px;}
+.new-nav { width:692px; height:30px; line-height:30px; overflow:hidden; margin-top: 20px;font-size: 30px;margin-left: 400px;}
 .new-nav li { float:left; height:30px; overflow:hidden; width:70px; padding-left:10px; text-align:center; font-size:16px;}
 .new-nav li a{color:#999;}
 .new-nav li a:hover{color:#fe9500;}

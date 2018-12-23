@@ -5,51 +5,49 @@
         <h3 class="itemTit"><span>评论信息</span></h3>
         <table class="addNewInfList">
             <tr>
-                <th>内容</th>
-                <td width="240">
-                    <input class="inp-list w-200 clear-mr f-left" type="text" th:value="${comments.content}"
-                           id="content" name="content" maxlength="3200"/>
-                    <span class="tipStar f-left">*</span>
-                </td>
-                <th>创建日期</th>
-                <td>
-                    <input onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text"
-                           class="inp-list w-200 clear-mr f-left"
-                           th:value="${comments.createdate} ? ${#dates.format(comments.createdate,'yyyy-MM-dd HH:mm:ss')} :''"
-                           id="createdate" name="createdate"/>
-                    <span class="tipStar f-left">*</span>
-                </td>
-            </tr>
-            <tr>
                 <th>所属作者</th>
                 <td width="240">
                     <div class="selectDownMode f-left w-206">
-                        <input type="text" th:if="${comments.users!=null}" th:value="${comments.users.name}"/>
-                        <input type="text" th:if="${comments.users==null}" value="请选择"/>
-                        <span class="tipStar f-left">*</span>
+                        <input type="text" value="请选择"/>
                         <select class="selectMode" name="users" id="users">
                             <option value="">请选择</option>
                             <option th:each="user:${usersList}" th:value="${user.id}"
                                     th:text="${#strings.length(user.name)>20?#strings.substring(user.name,0,20)+'...':user.name}"
-                                    th:selected="${comments.users.id == user.id}"
                             ></option>
                         </select>
+                        <span class="tipStar f-left">*</span>
                     </div>
                 </td>
+            </tr>
+            <tr>
                 <th>所属新闻</th>
                 <td width="240">
                     <div class="selectDownMode f-left w-206">
-                        <input type="text" th:if="${comments.news!=null}" th:value="${comments.news.title}"/>
-                        <input type="text" th:if="${comments.news==null}" value="请选择"/>
-                        <span class="tipStar f-left">*</span>
+                        <input type="text" value="请选择"/>
                         <select class="selectMode" name="news" id="news">
                             <option value="">请选择</option>
                             <option th:each="one:${newsList}" th:value="${one.id}"
                                     th:text="${#strings.length(one.title)>20?#strings.substring(one.title,0,20)+'...':one.title}"
-                                    th:selected="${comments.news.id == one.id}"
                             ></option>
                         </select>
+                        <span class="tipStar f-left">*</span>
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <th>日期</th>
+                <td>
+                    <input onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text"
+                           class="inp-list w-200 clear-mr f-left" id="createdate" name="createdate"/>
+                    <span class="tipStar f-left">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>评论内容</th>
+                <td width="240">
+                    <textarea class="inp-list w-600 clear-mr f-left" th:text="${comments.content}"
+                              name="content" id="content" maxlength="32000"/>
+                    <span class="tipStar f-left">*</span>
                 </td>
             </tr>
         </table>
