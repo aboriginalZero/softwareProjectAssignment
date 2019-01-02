@@ -28,6 +28,7 @@
             <div th:if="${#httpServletRequest.remoteUser != null}">
                 <input th:value="${#httpServletRequest.remoteUser}" id="errorMsg" type="hidden"/>
             </div>
+            <!--定义后台控制器路径-->
             <form th:action="@{/login}" id="loginForm" method="post">
                 <div class="loginTit png"></div>
                 <ul class="infList">

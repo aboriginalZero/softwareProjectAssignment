@@ -24,25 +24,13 @@ import java.util.Map;
 
 @Controller
 public class LoginController {
+
     @RequestMapping("/login")
     public String login() {
-
+//        System.out.println("调用login方法");
         return "login";
     }
 
-//    @RequestMapping("/choose")
-//    public String choose(Model model, Principal users) {
-//        Authentication authentication = (Authentication) users;
-//        List<String> userroles = new ArrayList<>();
-//        for (GrantedAuthority ga : authentication.getAuthorities()) {
-//            userroles.add(ga.getAuthority());
-//        }
-//        System.out.println(userroles.get(0));
-//        if(userroles.contains("admin")){
-//            return "users/index";
-//        }
-//        return "login";
-//    }
 
     //生成图形验证码
     @RequestMapping(value = "/images/imagecode")

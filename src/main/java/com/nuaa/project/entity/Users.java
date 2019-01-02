@@ -21,6 +21,8 @@ public class Users implements java.io.Serializable {
     private Long id;
     //用户名
     private String name;
+    //角色
+//    private String role;
     //密码
     private String password;
     //邮箱
@@ -41,6 +43,14 @@ public class Users implements java.io.Serializable {
 //
 //    public void setCommentsSet(Set<Comments> commentsSet) {
 //        this.commentsSet = commentsSet;
+//    }
+
+//    public String getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(String role) {
+//        this.role = role;
 //    }
 
     public Long getId() {

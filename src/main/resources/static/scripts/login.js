@@ -80,6 +80,7 @@ function reloadImg() {
 }
 
 function tologin() {
+    // console.log("1234567");
     window.location.href = "/";
 }
 

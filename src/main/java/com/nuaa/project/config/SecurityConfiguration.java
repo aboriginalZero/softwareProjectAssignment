@@ -18,6 +18,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.ForwardAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 
 import javax.sql.DataSource;
@@ -51,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        设置一个使用自定义的登录页面URL
-        http.formLogin().loginPage("/login").permitAll().successHandler(loginSuccessHandler())
+        http    .formLogin().loginPage("/login").permitAll().successHandler(loginSuccessHandler())
                 .and().authorizeRequests()
                 .antMatchers("/images/**", "/checkcode", "/scripts/**", "/styles/**").permitAll()
                 .antMatchers(settings.getPermitall().split(",")).permitAll()
@@ -65,16 +66,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage(settings.getDeniedpage())
 //                用来记住用户登录状态的一个配置,86400即一天
                 .and().rememberMe().tokenValiditySeconds(86400).tokenRepository(tokenRepository());
-//                登录相关
-//                .and().formLogin().loginPage("login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/home");
-
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        //这里是新增一个默认用户
-//        auth.inMemoryAuthentication().withUser("huahua").password("hello").roles("ADMIN");
-//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
