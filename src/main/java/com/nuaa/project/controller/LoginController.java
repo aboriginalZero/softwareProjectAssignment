@@ -1,7 +1,10 @@
 package com.nuaa.project.controller;
 
 import com.nuaa.project.util.ImageCode;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,15 +16,33 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 public class LoginController {
     @RequestMapping("/login")
     public String login() {
+
         return "login";
     }
+
+//    @RequestMapping("/choose")
+//    public String choose(Model model, Principal users) {
+//        Authentication authentication = (Authentication) users;
+//        List<String> userroles = new ArrayList<>();
+//        for (GrantedAuthority ga : authentication.getAuthorities()) {
+//            userroles.add(ga.getAuthority());
+//        }
+//        System.out.println(userroles.get(0));
+//        if(userroles.contains("admin")){
+//            return "users/index";
+//        }
+//        return "login";
+//    }
 
     //生成图形验证码
     @RequestMapping(value = "/images/imagecode")

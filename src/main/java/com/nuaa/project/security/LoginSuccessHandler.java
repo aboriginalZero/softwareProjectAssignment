@@ -20,7 +20,8 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
             throws IOException, ServletException {
         Users usersDetails = (Users) authentication.getPrincipal();
         //这里只是简单地输出了用户登录的日志
-        log.info("登录用户user:" + usersDetails.getName() + "login" + request.getContextPath());
+//        request.getSession().setAttribute("username",usersDetails.getName());
+        log.info("登录用户名:" + usersDetails.getName());
         log.info("IP:" + getIpAddress(request));
         super.onAuthenticationSuccess(request, response, authentication);
     }

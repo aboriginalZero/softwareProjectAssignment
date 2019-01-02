@@ -65,7 +65,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage(settings.getDeniedpage())
 //                用来记住用户登录状态的一个配置,86400即一天
                 .and().rememberMe().tokenValiditySeconds(86400).tokenRepository(tokenRepository());
+//                登录相关
+//                .and().formLogin().loginPage("login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/home");
+
     }
+
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        //这里是新增一个默认用户
+//        auth.inMemoryAuthentication().withUser("huahua").password("hello").roles("ADMIN");
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
