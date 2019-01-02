@@ -18,5 +18,7 @@ public interface UsersRepository extends JpaRepository<Users,Long> {
     @Query("select  t from Users t where t.name like :name")
     Page<Users> findByName(@Param("name") String name, Pageable pageRequest);
 
+    Users findById(Long id);
+
     Users findByName(String name);
 }

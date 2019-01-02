@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <title>用户界面展示</title>
+    <link th:href="@{/frontEndDisplay/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/preset.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/owl.carousel.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/owl.theme.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/magnific-popup.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/responsive.css}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<!-- Header Area Start -->
+<header class="header-area">
+    <nav class="main-menu hidden-xs hidden-sm">
+        <ul class="menu-left pull-left">
+            <li><a href="#">待填</a></li>
+            <li><a href="biography.html">待填</a></li>
+        </ul>
+        <ul class="menu-right pull-left">
+            <li><a href="photo.html">待填</a></li>
+            <li><a href="volunteer.html">待填</a></li>
+        </ul>
+    </nav>
+    <ul class="pull-right search-cart">
+        <li class="user-profile-menu">
+            <a href="profile.html"><i class="fa fa-user"></i></a>
+            <ul>
+                <li><a href="#">修改密码</a></li>
+                <li><a href="#">注销</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+    <!-- Search Area -->
+    <section class="search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <input action="#" method="post" class="search-form">
+                    <input type="search" name="search" placeholder="Search...">
+                    <a href="#" id="search-close"><i class="fa fa-times"></i></a>
+                    </input>
+                    </input>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+<!-- Header Area End -->
+
+<!-- Subscribe Area Start -->
+<section class="subscribe-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 text-center">
+                <form action="#" method="post" class="subscribe-form" id="subscribe-form">
+                    <input type="email" name="email" placeholder="输入您要查询的新闻">
+                    <button type="submit">查询</button>
+                    </input>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Subscribe Area End -->
+<!-- Latest News Area Start -->
+<section class="latest-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 text-center">
+                <h2 class="section-title">Latest <span>News</span></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-12 col-sm-6">
+            </div>
+            <div class="col-md-10 col-xs-12 col-sm-6">
+                <div class="thumbnail-news">
+                    <div class="small-news pull-left" th:each="one:${newsList}">
+
+                        <a id="title" th:href="@{'/users/oneNews/'+${one.id}} " th:text="${one.title}" target="_Blank"></a>
+                        <p th:text="${one.createdate}"></p>
+                        <p th:text="${#strings.length(one.content) > 20? #strings.substring(one.content,0,20)+'......':one.content}"></p>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Latest News Area End -->
+<!-- Footer Area Start -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 text-left">
+                <ul class="footer-menu">
+                    <li class="wow fadeInLeft"><a href="#">&copy; 2019 版权所有 </a></li>
+                    <li class="wow fadeInLeft"><a href="#">关于我们</a></li>
+                    <li class="wow fadeInLeft"><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/frontEndDisplay/js/jquery.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.appear.js}"></script>
+<script th:src="@{/frontEndDisplay/js/bootstrap.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/owl.carousel.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/mixItUp.js}"></script>
+<script th:src="@{/frontEndDisplay/js/main.js}"></script>
+
+</body>
+</html>

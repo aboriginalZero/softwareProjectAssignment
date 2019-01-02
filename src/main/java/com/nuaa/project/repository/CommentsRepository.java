@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @Auther: cyw35
  * @Date: 2018/12/18 19:09
@@ -18,6 +20,7 @@ public interface CommentsRepository extends JpaRepository<Comments,Long> {
     @Query("select t from Comments t where t.content like :content")
     Page<Comments> findByContent(@Param("content")String content, Pageable pageable);
 
+    List<Comments> findAllByNewsId(Long id);
 
     Comments findByContent(String content);
 }

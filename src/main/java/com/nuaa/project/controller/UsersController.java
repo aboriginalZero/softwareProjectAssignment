@@ -1,7 +1,9 @@
 package com.nuaa.project.controller;
 
-import com.nuaa.project.entity.Users;
+import com.nuaa.project.entity.*;
 import com.nuaa.project.model.UsersQo;
+import com.nuaa.project.repository.CommentsRepository;
+import com.nuaa.project.repository.NewsRepository;
 import com.nuaa.project.repository.UsersRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,8 +43,64 @@ public class UsersController {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    private NewsRepository newsRepository;
+
+    @Autowired
+    private CommentsRepository commentsRepository;
+
     @Value("${securityconfig.urlroles}")
     private String urlroles;
+
+
+    @RequestMapping("/allNews")
+    public String allNews(Model model,Principal users) {
+        Authentication authentication = (Authentication) users;
+
+        List<News> newsList = newsRepository.findAll();
+        model.addAttribute("users",users);
+        model.addAttribute("newsList", newsList);
+        return "allNews";
+    }
+
+    @RequestMapping("/oneNews/{id}")
+    public String oneNews(Model model, @PathVariable Long id) {
+
+        ConcreteNews concreteNews = new ConcreteNews();
+
+        News news = newsRepository.findById(id);
+        System.out.println("新闻名称:" + news.getTitle());
+        concreteNews.setTitle(news.getTitle());
+        concreteNews.setContent(news.getContent());
+        concreteNews.setCreatedate(news.getCreatedate());
+
+        List<ConcreteComments> concreteCommentsList = new ArrayList<>();
+
+        List<Comments> commentsList = commentsRepository.findAllByNewsId(id);
+        int len = commentsList.size();
+//        System.out.println("评论数：" + len);
+        for (int i = 0; i < len; i++) {
+//            System.out.println("评论内容为：" + commentsList.get(i).getContent());
+//            System.out.println("评论用户为：" + commentsList.get(i).getUsers().getName());
+
+            concreteCommentsList.add(
+                    new ConcreteComments(
+                            commentsList.get(i).getContent(),
+                            commentsList.get(i).getUsers().getName(),
+                            commentsList.get(i).getCreatedate())
+            );
+        }
+        concreteNews.setConcreteCommentsList(concreteCommentsList);
+        model.addAttribute("concreteNews", concreteNews);
+        return "oneShow";
+    }
+
+    @RequestMapping("/{id}")
+    public String show(Model model, @PathVariable Long id) {
+        Users users = usersRepository.findOne(id);
+        model.addAttribute("users", users);
+        return "users/show";
+    }
 
     @RequestMapping("/index")
     public String index(Model model, Principal users) {
@@ -110,12 +168,6 @@ public class UsersController {
         return null;
     }
 
-    @RequestMapping("/{id}")
-    public String show(Model model, @PathVariable Long id) {
-        Users users = usersRepository.findOne(id);
-        model.addAttribute("users", users);
-        return "users/show";
-    }
 
     @RequestMapping("/new")
     public String create(Model model, Users users) {

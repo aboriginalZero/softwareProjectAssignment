@@ -20,4 +20,5 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     @Query("select t from News t where t.title like :title")
     Page<News> findByTitle(@Param("title") String title, Pageable pageable);
 
+    News findById(Long id);
 }

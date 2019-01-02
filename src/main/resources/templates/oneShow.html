@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>新闻展示</title>
+    <link th:href="@{/frontEndDisplay/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/preset.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/owl.carousel.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/owl.theme.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/magnific-popup.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/frontEndDisplay/css/responsive.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="header-area">
+    <nav class="main-menu hidden-xs hidden-sm">
+        <ul class="menu-left pull-left">
+            <li>
+                <a href="#">待填</a>
+            </li>
+            <li>
+                <a href="biography.html">待填</a>
+            </li>
+        </ul>
+        <ul class="menu-right pull-left">
+            <li>
+                <a href="photo.html">待填</a>
+            </li>
+            <li>
+                <a href="volunteer.html">待填</a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="pull-right search-cart">
+        <li class="user-profile-menu">
+            <a href="profile.html">
+                <i class="fa fa-user"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="#">修改密码</a>
+                </li>
+                <li>
+                    <a href="#">注销</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+</header>
+<!-- Header Area End -->
+<!-- News Area Start -->
+<section class="single-singe-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-xs-12 text-left col-sm-8">
+                <div class="post-contents">
+                    <article class="post-details">
+                        <h3 th:text="${concreteNews.title}"></h3>
+                        <p th:text="${concreteNews.createdate}"></p>
+                        <!--<br><br>-->
+                        <p th:text="${concreteNews.content}"></p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="col-md-10 col-xs-12 text-left col-sm-8">
+                <div class="post-contents">
+                    <!--<br>-->
+                    <div class="response">
+                        <h3>评论</h3>
+                        <!--<br><br><br>-->
+                        <div class="media response-info" th:each="one:${concreteNews.concreteCommentsList}">
+                            <div class="media-left response-text-left">
+                                <h5 th:text="${one.userName}"></h5>
+                            </div>
+                            <div class="media-body response-text-right">
+                                <p th:text="${one.content}"></p>
+                                <ul>
+                                    <li th:text="${one.createdate}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="coment-form">
+                            <h4>留下你的评论</h4>
+                            <textarea onfocus="this.value = '';"
+                                      onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">你想说的话是...</textarea>
+                            <input type="submit" value="提交">
+                            </input>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- News Area End -->
+
+<!-- Footer Area Start -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 text-left">
+                <ul class="footer-menu">
+                    <li class="wow fadeInLeft">
+                        <a href="#">&copy; 2018 版权所有 </a>
+                    </li>
+                    <li class="wow fadeInLeft">
+                        <a href="#">关于我们</a>
+                    </li>
+                    <li class="wow fadeInLeft">
+                        <a href="#">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Area End -->
+<!-- Include All JavaScript -->
+<script th:src="@{/frontEndDisplay/js/jquery.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.appear.js}"></script>
+<script th:src="@{/frontEndDisplay/js/bootstrap.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/owl.carousel.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/mixItUp.js}"></script>
+<script th:src="@{/frontEndDisplay/js/main.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.appear.js}"></script>
+
+<script th:src="@{/frontEndDisplay/js/bootstrap.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.countdown.min.js}"></script>
+
+<script th:src="@{/frontEndDisplay/js/oneNews.js}"></script>
+
+</body>
+</html>

@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        设置一个使用自定义的登录页面URL
-        http    .formLogin().loginPage("/login").permitAll().successHandler(loginSuccessHandler())
+        http    .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/login").successHandler(loginSuccessHandler())
                 .and().authorizeRequests()
                 .antMatchers("/images/**", "/checkcode", "/scripts/**", "/styles/**").permitAll()
                 .antMatchers(settings.getPermitall().split(",")).permitAll()
