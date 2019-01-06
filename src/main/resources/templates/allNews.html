@@ -16,28 +16,22 @@
     <link th:href="@{/frontEndDisplay/css/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/frontEndDisplay/css/responsive.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/scripts/artDialog/default.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/styles/global.css}"  rel="stylesheet" type="text/css"/>
-    <link th:href="@{/styles/index.css}" rel="stylesheet"  type="text/css"/>
+    <link th:href="@{/styles/global.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/styles/index.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <!-- Header Area Start -->
 <header class="header-area">
-
     <nav class="main-menu hidden-xs hidden-sm">
-
         <ul class="menu-left pull-left" id="tbodyContent">
-
         </ul>
         <ul class="menu-right pull-left">
-            <!--<li><a href="javascript:showSearch();" >搜索新闻</a></li>-->
-
-            <li><a th:href="${'/comments/myComments/'+username}"  id="myComments">历史评论</a></li>
+            <li><a th:href="${'/comments/myComments/'+username}" id="myComments">历史评论</a></li>
             <li><a id="updateInfo" href="javascript:void(0)" onclick="updateInfo()">修改个人信息</a></li>
         </ul>
     </nav>
     <ul class="pull-right search-cart">
         <li><a href="javascript:void(0)" id="logout">[退出]</a></li>
-
     </ul>
     <div class="clearfix"></div>
 </header>
@@ -77,8 +71,9 @@
                 <div class="thumbnail-news">
                     <div class="small-news pull-left" th:each="one:${newsList}">
                         <div>
-                            <a id="title" th:href="@{'/users/oneNews/'+${one.id}} " th:text="${one.title}" style="font-size: 20px;"
-                               target="_Blank" ></a>
+                            <a id="title" th:href="@{'/users/oneNews/'+${one.id}} " th:text="${one.title}"
+                               style="font-size: 20px;"
+                               target="_Blank"></a>
                             <p th:text="${one.createdate}" style="float: right;"></p>
                         </div>
                         <br></br>

@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * @Auther: cyw35
  * @Date: 2018/12/18 17:16
- * @Description:
+ * @Description:新闻类
  */
 @Entity
 @Table(name = "my_news")
@@ -28,20 +28,10 @@ public class News implements java.io.Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
     //评论
-//    @OneToMany(mappedBy = "content")
-//    private Set<Comments> commentsSet = new HashSet<>();
 
     public News() {
     }
 
-
-//    public Set<Comments> getCommentsSet() {
-//        return commentsSet;
-//    }
-//
-//    public void setCommentsSet(Set<Comments> commentsSet) {
-//        this.commentsSet = commentsSet;
-//    }
 
     public Long getId() {
         return id;

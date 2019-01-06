@@ -17,26 +17,22 @@
 <body>
 <!-- Header Area Start -->
 <header class="header-area">
-
     <nav class="main-menu hidden-xs hidden-sm">
-
         <ul class="menu-left pull-left" id="tbodyContent">
-
         </ul>
         <ul class="menu-right pull-left">
-            <!--<li><a href="javascript:showSearch();" >搜索新闻</a></li>-->
-            <li><a href="javascript:void(0)" id="myComments">历史评论</a></li>
+            <li><a th:href="${'/users/allNews'}" id="newsList">新闻列表</a></li>
+            <!--<li><a id="updateInfo" href="javascript:void(0)" onclick="updateInfo()">修改个人信息</a></li>-->
         </ul>
     </nav>
     <ul class="pull-right search-cart">
         <li><a href="javascript:void(0)" id="logout">[退出]</a></li>
-
     </ul>
     <div class="clearfix"></div>
 </header>
 <!-- Header Area End -->
 <!-- Comments Area Start -->
-<section class="single-singe-area">
+<section class="single-singe-area" style="background: #eaeae0;">
     <div class="container">
         <div class="row">
             <div class="col-md-2 col-xs-12 col-sm-6"></div>
@@ -50,7 +46,7 @@
                             <br></br><br></br><br></br>
                             <a id="title" th:href="@{'/users/oneNews/'+${one.news.id}} "
                                th:text="${#strings.length(one.news.title) > 10? #strings.substring(one.news.title,0,10)+'......':one.news.title}"
-                               style="float: right;"   target="_Blank"></a>
+                               style="float: right;" target="_Blank"></a>
 
                         </div>
 
@@ -63,7 +59,6 @@
     </div>
 </section>
 <!-- Comments Area End -->
-<form th:action="@{/logout}" method="post" id="logoutform"></form>
 <!-- Footer Area Start -->
 <footer class="footer-area">
     <div class="container">
@@ -85,6 +80,7 @@
     </div>
 </footer>
 <!-- Footer Area End -->
+<form th:action="@{/logout}" method="post" id="logoutform"></form>
 <!-- Include All JavaScript -->
 <script th:src="@{/frontEndDisplay/js/jquery.min.js}"></script>
 <script th:src="@{/frontEndDisplay/js/jquery.appear.js}"></script>

@@ -23,8 +23,6 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 //        request.getSession().setAttribute("username",usersDetails.getName());
         log.info("登录用户名:" + usersDetails.getName());
         log.info("IP:" + getIpAddress(request));
-//        String redirectUrl = "localhost:8080/users/allNews";
-//        response.sendRedirect(redirectUrl);
         super.onAuthenticationSuccess(request, response, authentication);
 
     }

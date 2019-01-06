@@ -28,7 +28,7 @@ body{width:100%;min-height:100%;background:#ecedee url(../images/login/bg.jpg) t
 @media screen and (max-width: 800px){
 	.mainBox{width:960px;margin:0 auto;top:45px;height:auto;position:relative;}
 }
-.leftBox{width:361px;height:auto;position:absolute;right:0;top:130px;}
+.leftBox{width:361px;height:auto;position:absolute;left: 600px;;top:130px;}
 .loginBoxTop{width:361px;height:14px;background:url(../images/login/login-bk-top.png) top left no-repeat;overflow:hidden;}
 .loginBox{width:361px;background:url(../images/login/login-bk-cen.png) top left repeat-y;padding-bottom:36px;}
 .loginBoxBot{width:361px;height:13px;position:relative;background:url(../images/login/login-bk-bot.png) top left no-repeat;overflow:hidden;}

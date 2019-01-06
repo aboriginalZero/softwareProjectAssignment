@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * @Auther: cyw35
  * @Date: 2018/12/19 17:20
- * @Description:
+ * @Description:新闻控制器
  */
 @Controller
 @RequestMapping("/news")
@@ -50,18 +50,6 @@ public class NewsController {
 
         return "news/index";
     }
-
-//    @RequestMapping("/searchList")
-//    @ResponseBody
-//    public List<News> getSearchList(News news){
-//        try {
-//            return newsRepository.findByTitle(news.getTitle() == null ? "%" : "%" + news.getTitle() + "%");
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return  null;
-//    }
-
 
     @RequestMapping("/list")
     @ResponseBody

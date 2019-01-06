@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * @Auther: cyw35
  * @Date: 2019/1/2 15:49
- * @Description:
+ * @Description:具体评论类，方便前后台的数据传输
  */
 public class ConcreteComments {
     private String content;

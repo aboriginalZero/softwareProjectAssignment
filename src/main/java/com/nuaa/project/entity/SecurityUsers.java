@@ -38,13 +38,6 @@ public class SecurityUsers extends Users implements UserDetails {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
         authorities.add(authority);
 
-//        List<Role> roles = this.getRoles();
-//        if (roles != null) {
-//            for (Role role : roles) {
-//                SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
-//                authorities.add(authority);
-//            }
-//        }
         return authorities;
     }
 

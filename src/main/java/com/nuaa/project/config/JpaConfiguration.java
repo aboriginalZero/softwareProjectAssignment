@@ -22,7 +22,7 @@ import java.util.Properties;
 /**
  * @Auther: cyw35
  * @Date: 2018/12/18 17:15
- * @Description:
+ * @Description:数据库配置类
  */
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Configuration

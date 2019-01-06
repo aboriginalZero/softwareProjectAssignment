@@ -15,45 +15,25 @@
     <link th:href="@{/frontEndDisplay/css/responsive.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<!-- Header Area Start -->
 <header class="header-area">
     <nav class="main-menu hidden-xs hidden-sm">
-        <ul class="menu-left pull-left">
-            <li>
-                <a href="#">待填</a>
-            </li>
-            <li>
-                <a href="biography.html">待填</a>
-            </li>
+        <ul class="menu-left pull-left" id="tbodyContent">
         </ul>
         <ul class="menu-right pull-left">
-            <li>
-                <a href="photo.html">待填</a>
-            </li>
-            <li>
-                <a href="volunteer.html">待填</a>
-            </li>
+            <li><a th:href="${'/users/allNews'}" id="newsList">新闻列表</a></li>
+            <!--<li><a th:href="${'/comments/myComments/'+username}" id="myComments">历史评论</a></li>-->
+            <!--<li><a id="updateInfo" href="javascript:void(0)" onclick="updateInfo()">修改个人信息</a></li>-->
         </ul>
     </nav>
     <ul class="pull-right search-cart">
-        <li class="user-profile-menu">
-            <a href="profile.html">
-                <i class="fa fa-user"></i>
-            </a>
-            <ul>
-                <li>
-                    <a href="#">修改密码</a>
-                </li>
-                <li>
-                    <a href="#">注销</a>
-                </li>
-            </ul>
-        </li>
+        <!--<li><a href="javascript:void(0)" id="logout">[退出]</a></li>-->
     </ul>
     <div class="clearfix"></div>
 </header>
 <!-- Header Area End -->
 <!-- News Area Start -->
-<section class="single-singe-area">
+<section class="single-singe-area" style="background: #eaeae0;">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-xs-12 text-left col-sm-8">
@@ -90,7 +70,8 @@
                         <div class="coment-form">
                             <h4>留下你的评论</h4>
                             <textarea id="textarea" onfocus="this.value = '';"
-                                      onblur="if (this.value == '') {this.value = '你想说的话是...';}" required="">你想说的话是...</textarea>
+                                      onblur="if (this.value == '') {this.value = '你想说的话是...';}"
+                                      required="">你想说的话是...</textarea>
                             <input type="submit" value="提交" id="addComments">
                             </input>
                         </div>
@@ -124,6 +105,7 @@
     </div>
 </footer>
 <!-- Footer Area End -->
+<!--<form th:action="@{/logout}" method="post" id="logoutform"></form>-->
 <!-- Include All JavaScript -->
 <script th:src="@{/frontEndDisplay/js/jquery.min.js}"></script>
 <script th:src="@{/frontEndDisplay/js/jquery.appear.js}"></script>

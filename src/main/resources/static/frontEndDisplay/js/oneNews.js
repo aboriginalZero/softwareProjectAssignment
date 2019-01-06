@@ -5,17 +5,6 @@ $(function () {
         xhr.setRequestHeader(header, token);
     });
 
-    // window.onload = function () {
-    //     var editrole = $("#editrole").val();
-    //     var $list = $('#tbodyContent').empty();
-    //     var html = "";
-    //     if (editrole == 'true') {
-    //         html += '<li><a th:href="@{/users/index}">后台管理</a></li>';
-    //         $list.append($(html));
-    //     }
-    // }
-    // 查询处理
-
     $('#addComments').click(function () {
         var usersName = $("#usersName").val()
         var textarea = $("#textarea").val();

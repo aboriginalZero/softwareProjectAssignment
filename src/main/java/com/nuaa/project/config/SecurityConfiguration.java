@@ -25,6 +25,11 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Auther: cyw35
+ * @Date: 2018/12/18 17:15
+ * @Description:安全配置类
+ */
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 @EnableConfigurationProperties(SecuritySettings.class)

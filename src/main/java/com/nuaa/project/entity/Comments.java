@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * @Auther: cyw35
  * @Date: 2018/12/18 17:19
- * @Description:
+ * @Description:评论类
  */
 @Entity
 @Table(name = "my_comments")

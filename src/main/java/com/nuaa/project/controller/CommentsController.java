@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * @Auther: cyw35
  * @Date: 2018/12/19 22:44
- * @Description:
+ * @Description:评论控制器
  */
 @Controller
 @RequestMapping("/comments")
@@ -83,14 +83,6 @@ public class CommentsController {
     public String myComments(Model model,@PathVariable String usersName) {
         Users users = usersRepository.findByName(usersName);
         List<Comments> commentsList = commentsRepository.findAllByUsersId(users.getId());
-//        Comments comments = new Comments();
-//        int len = commentsList.size();
-//        List<UsersComments> usersCommentsList = new ArrayList<>();
-//        for (int i = 0; i < len; i++) {
-//            comments = commentsList.get(i);
-//            usersCommentsList.add(new UsersComments(comments.getNews().getId(),comments.getNews().getTitle(),
-//                    comments.getCreatedate(),comments.getContent()));
-//        }
         model.addAttribute("commentsList", commentsList);
         return "myComments";
     }

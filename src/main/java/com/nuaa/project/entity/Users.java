@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * @Auther: cyw35
  * @Date: 2018/12/18 17:21
- * @Description:
+ * @Description:用户类
  */
 @Entity
 @Table(name = "my_users")
@@ -30,20 +30,11 @@ public class Users implements java.io.Serializable {
     //创建时间
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
-    //评论
-//    @OneToMany(mappedBy = "content")
-//    private Set<Comments> commentsSet = new HashSet<>();
+
 
     public Users() {
     }
 
-//    public Set<Comments> getCommentsSet() {
-//        return commentsSet;
-//    }
-//
-//    public void setCommentsSet(Set<Comments> commentsSet) {
-//        this.commentsSet = commentsSet;
-//    }
 
     public String getRole() {
         return role;
