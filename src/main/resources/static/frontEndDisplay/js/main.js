@@ -168,28 +168,28 @@
     if ($("#subscribe-form").length > 0) {
         $("#subscribe-form").submit(function (e) {
             e.preventDefault();
-            var email = $("#subscribe-form input").val();
-            if (email !== '')
-            {
-                $("#subscribe-form input").removeClass('throw-error');
-                $("#subscribe-form button").html('Sending...');
-                $.ajax({
-                    type: "POST",
-                    url: 'subscribe.php',
-                    data: {email: email},
-                    success: function (data)
-                    {
-                        $("#subscribe-form input").val('');
-                        $("#subscribe-form input").attr('placeholder', 'Successfully Done!');
-                        $("#subscribe-form button").html('Subscribe Now');
-                    }
-                });
-            } else
-            {
-                $("#subscribe-form input").addClass('throw-error');
-                $("#subscribe-form button").html('Subscribe Now');
-            }
-            return false;
+            // var email = $("#subscribe-form input").val();
+            // if (email !== '')
+            // {
+            //     $("#subscribe-form input").removeClass('throw-error');
+            //     // $("#subscribe-form button").html('Sending...');
+            //     $.ajax({
+            //         type: "POST",
+            //         url: 'subscribe.php',
+            //         data: {email: email},
+            //         success: function (data)
+            //         {
+            //             $("#subscribe-form input").val('');
+            //             $("#subscribe-form input").attr('placeholder', 'Successfully Done!');
+            //             $("#subscribe-form button").html('Subscribe Now');
+            //         }
+            //     });
+            // } else
+            // {
+            //     $("#subscribe-form input").addClass('throw-error');
+            //     $("#subscribe-form button").html('Subscribe Now');
+            // }
+            // return false;
         });
 
     }

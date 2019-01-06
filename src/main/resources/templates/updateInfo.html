@@ -1,4 +1,6 @@
-<script th:src="@{/scripts/users/edit.js}" xmlns:th="http://www.w3.org/1999/xhtml"></script>
+<script th:src="@{/frontEndDisplay/js/allNews.js}"
+        xmlns:th="http://www.w3.org/1999/xhtml"></script>
+
 <form id="saveForm" method="post">
     <input type="hidden" name="id" id="id" th:value="${users.id}"/>
     <div class="addInfBtn">
@@ -26,5 +28,4 @@
             <a class="btn-93X38 backBtn" href="javascript:closeDialog(0)">返回</a>
         </div>
     </div>
-
 </form>

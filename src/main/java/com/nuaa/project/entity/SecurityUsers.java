@@ -25,6 +25,7 @@ public class SecurityUsers extends Users implements UserDetails {
             this.setEmail(users.getEmail());
             this.setPassword(users.getPassword());
             this.setCreatedate(users.getCreatedate());
+            this.setRole(users.getRole());
         }
     }
 
@@ -32,9 +33,11 @@ public class SecurityUsers extends Users implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//        当前业务中只有唯一一个管理员,故不做区别
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("admin");
+
+        String role = this.getRole();
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
         authorities.add(authority);
+
 //        List<Role> roles = this.getRoles();
 //        if (roles != null) {
 //            for (Role role : roles) {

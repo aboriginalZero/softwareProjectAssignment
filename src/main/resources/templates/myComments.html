@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      xmlns:font-size="http://www.w3.org/1999/xhtml"
->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <title>主界面</title>
+    <title>新闻</title>
     <link th:href="@{/frontEndDisplay/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/frontEndDisplay/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/frontEndDisplay/css/preset.css}" rel="stylesheet" type="text/css"/>
@@ -15,9 +13,6 @@
     <link th:href="@{/frontEndDisplay/css/magnific-popup.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/frontEndDisplay/css/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/frontEndDisplay/css/responsive.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/scripts/artDialog/default.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/styles/global.css}"  rel="stylesheet" type="text/css"/>
-    <link th:href="@{/styles/index.css}" rel="stylesheet"  type="text/css"/>
 </head>
 <body>
 <!-- Header Area Start -->
@@ -30,9 +25,7 @@
         </ul>
         <ul class="menu-right pull-left">
             <!--<li><a href="javascript:showSearch();" >搜索新闻</a></li>-->
-
-            <li><a th:href="${'/comments/myComments/'+username}"  id="myComments">历史评论</a></li>
-            <li><a id="updateInfo" href="javascript:void(0)" onclick="updateInfo()">修改个人信息</a></li>
+            <li><a href="javascript:void(0)" id="myComments">历史评论</a></li>
         </ul>
     </nav>
     <ul class="pull-right search-cart">
@@ -42,47 +35,25 @@
     <div class="clearfix"></div>
 </header>
 <!-- Header Area End -->
-<!--用来获取后端传来的身份判断-->
-<input type="hidden" name="editrole" id="editrole" th:value="${editrole}"/>
-<input type="hidden" name="username" id="username" th:value="${username}"/>
-<!-- Subscribe Area Start -->
-<div id="search" style="display:none">
-    <section class="subscribe-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-xs-12 text-center">
-                    <form action="#" method="post" class="subscribe-form" id="subscribe-form">
-                        <input type="text" name="searchTitle" id="searchTitle" placeholder="输入您要查询的新闻">
-                        <button type="submit" id="searchBtn">查询</button>
-                        </input>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<!-- Subscribe Area End -->
-<!-- Latest News Area Start -->
-<section class="latest-news">
-    <div class="container" id="newsList">
+<!-- Comments Area Start -->
+<section class="single-singe-area">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 col-xs-12 text-center">
-                <h2 class="section-title">Latest <span>News</span></h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 col-xs-12 col-sm-6">
-            </div>
-            <div class="col-md-10 col-xs-12 col-sm-6">
+            <div class="col-md-2 col-xs-12 col-sm-6"></div>
+            <div class="col-md-10 col-xs-12 text-left col-sm-8">
                 <div class="thumbnail-news">
-                    <div class="small-news pull-left" th:each="one:${newsList}">
+                    <div class="small-news pull-left" th:each="one:${commentsList}" style="font-size: 10px">
                         <div>
-                            <a id="title" th:href="@{'/users/oneNews/'+${one.id}} " th:text="${one.title}" style="font-size: 20px;"
-                               target="_Blank" ></a>
+                            <p th:text="${#strings.length(one.content) > 100? #strings.substring(one.content,0,100)+'......':one.content}"
+                               style="float: left;"></p>
                             <p th:text="${one.createdate}" style="float: right;"></p>
+                            <br></br><br></br><br></br>
+                            <a id="title" th:href="@{'/users/oneNews/'+${one.news.id}} "
+                               th:text="${#strings.length(one.news.title) > 10? #strings.substring(one.news.title,0,10)+'......':one.news.title}"
+                               style="float: right;"   target="_Blank"></a>
+
                         </div>
-                        <br></br>
-                        <p th:text="${#strings.length(one.content) > 100? #strings.substring(one.content,0,100)+'......':one.content}"></p>
+
                         <br></br><br></br><br></br>
                     </div>
                     <div class="clearfix"></div>
@@ -91,23 +62,30 @@
         </div>
     </div>
 </section>
+<!-- Comments Area End -->
 <form th:action="@{/logout}" method="post" id="logoutform"></form>
-<!-- Latest News Area End -->
 <!-- Footer Area Start -->
 <footer class="footer-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12 text-center">
                 <ul class="footer-menu">
-                    <li class="wow fadeInLeft"><a href="#">&copy; 2019 版权所有 </a></li>
-                    <li class="wow fadeInLeft"><a href="#">关于我们</a></li>
-                    <li class="wow fadeInLeft"><a href="#">联系我们</a></li>
+                    <li class="wow fadeInLeft">
+                        <a href="#">&copy; 2018 版权所有</a>
+                    </li>
+                    <li class="wow fadeInLeft">
+                        <a href="#">关于我们</a>
+                    </li>
+                    <li class="wow fadeInLeft">
+                        <a href="#">联系我们</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
-
+<!-- Footer Area End -->
+<!-- Include All JavaScript -->
 <script th:src="@{/frontEndDisplay/js/jquery.min.js}"></script>
 <script th:src="@{/frontEndDisplay/js/jquery.appear.js}"></script>
 <script th:src="@{/frontEndDisplay/js/bootstrap.min.js}"></script>
@@ -116,9 +94,13 @@
 <script th:src="@{/frontEndDisplay/js/jquery.countdown.min.js}"></script>
 <script th:src="@{/frontEndDisplay/js/mixItUp.js}"></script>
 <script th:src="@{/frontEndDisplay/js/main.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.appear.js}"></script>
+
+<script th:src="@{/frontEndDisplay/js/bootstrap.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/frontEndDisplay/js/jquery.countdown.min.js}"></script>
 <script th:src="@{/frontEndDisplay/js/allNews.js}"></script>
-<script th:src="@{/scripts/artDialog/artDialog.js}"/>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
 <script>
     $(function () {
         //根据用户角色判断是否给予进入后台管理的入口

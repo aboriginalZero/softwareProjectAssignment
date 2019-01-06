@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * @Auther: cyw35
@@ -19,6 +21,11 @@ import org.springframework.stereotype.Repository;
 public interface NewsRepository extends JpaRepository<News, Long> {
     @Query("select t from News t where t.title like :title")
     Page<News> findByTitle(@Param("title") String title, Pageable pageable);
+
+    @Query("select t from News t where t.title like :title")
+    List<News> findByTitle(@Param("title") String title);
+
+
 
     News findById(Long id);
 }

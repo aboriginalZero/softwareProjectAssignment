@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class CommentsController {
     @RequestMapping("/index")
     public String index(Model model, Principal users) {
 
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
 //        model.addAttribute("comments", comments);
 
         model.addAttribute("newcomments", true);
@@ -76,6 +77,37 @@ public class CommentsController {
         Comments comments = commentsRepository.findOne(id);
         model.addAttribute("comments", comments);
         return "comments/show";
+    }
+
+    @RequestMapping(value = "/myComments/{usersName}")
+    public String myComments(Model model,@PathVariable String usersName) {
+        Users users = usersRepository.findByName(usersName);
+        List<Comments> commentsList = commentsRepository.findAllByUsersId(users.getId());
+//        Comments comments = new Comments();
+//        int len = commentsList.size();
+//        List<UsersComments> usersCommentsList = new ArrayList<>();
+//        for (int i = 0; i < len; i++) {
+//            comments = commentsList.get(i);
+//            usersCommentsList.add(new UsersComments(comments.getNews().getId(),comments.getNews().getTitle(),
+//                    comments.getCreatedate(),comments.getContent()));
+//        }
+        model.addAttribute("commentsList", commentsList);
+        return "myComments";
+    }
+
+    @RequestMapping(value = "/newComments")
+    @ResponseBody
+    public String newComments(String content, String title, String usersName) {
+        System.out.println("内容是：" + content);
+        Comments comments = new Comments();
+        comments.setContent(content);
+        comments.setCreatedate(new Date());
+        comments.setUsers(usersRepository.findByName(usersName));
+        comments.setNews(newsRepository.findByTitle(title).get(0));
+
+        commentsRepository.save(comments);
+        logger.info("新增->ID=" + comments.getId());
+        return "1";
     }
 
     @RequestMapping("/new")

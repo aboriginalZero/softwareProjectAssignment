@@ -2,13 +2,11 @@
 <form id="saveForm" action="./save" method="post">
     <table class="addNewInfList">
         <tr>
-            <th>用户名</th>
+            <th>名称</th>
             <td width="240">
                 <input class="inp-list w-200 clear-mr f-left" type="text" name="name" id="name" maxlength="32" />
                 <span class="tipStar f-left">*</span>
             </td>
-        </tr>
-        <tr>
             <th>密码</th>
             <td width="240">
                 <input class="inp-list w-200 clear-mr f-left" type="password" id="password" name="password" maxlength="32" />
@@ -20,6 +18,21 @@
             <td width="240">
                 <input class="inp-list w-200 clear-mr f-left" type="text" name="email" id="email" maxlength="32" />
                 <span class="tipStar f-left">*</span>
+            </td>
+            <th>角色</th>
+            <td width="240">
+                <div class="selectDownMode f-left w-206">
+                    <input type="text" value="请选择"/>
+                    <select class="selectMode" name="role" id="role">
+                        <option value="请选择">请选择</option>
+                        <option value="admin">admin</option>
+                        <option value="user">user</option>
+                        <!--<option th:each="user:${usersList}" th:value="${user.id}"-->
+                                <!--th:text="${#strings.length(user.name)>20?#strings.substring(user.name,0,20)+'...':user.name}"-->
+                        <!--&gt;</option>-->
+                    </select>
+                    <span class="tipStar f-left">*</span>
+                </div>
             </td>
         </tr>
     </table>

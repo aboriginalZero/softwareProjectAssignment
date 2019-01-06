@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>新闻展示</title>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>新闻</title>
     <link th:href="@{/frontEndDisplay/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/frontEndDisplay/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/frontEndDisplay/css/preset.css}" rel="stylesheet" type="text/css"/>
@@ -56,10 +58,13 @@
         <div class="row">
             <div class="col-md-10 col-xs-12 text-left col-sm-8">
                 <div class="post-contents">
+                    <!--传入用户名-->
+                    <input type="hidden" name="usersName" id="usersName" th:value="${usersName}"/>
                     <article class="post-details">
+                        <input type="hidden" name="newstitle" id="newstitle" th:value="${concreteNews.title}"/>
                         <h3 th:text="${concreteNews.title}"></h3>
                         <p th:text="${concreteNews.createdate}"></p>
-                        <!--<br><br>-->
+                        <!--<br></br>-->
                         <p th:text="${concreteNews.content}"></p>
                     </article>
                 </div>
@@ -84,9 +89,9 @@
                         </div>
                         <div class="coment-form">
                             <h4>留下你的评论</h4>
-                            <textarea onfocus="this.value = '';"
-                                      onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">你想说的话是...</textarea>
-                            <input type="submit" value="提交">
+                            <textarea id="textarea" onfocus="this.value = '';"
+                                      onblur="if (this.value == '') {this.value = '你想说的话是...';}" required="">你想说的话是...</textarea>
+                            <input type="submit" value="提交" id="addComments">
                             </input>
                         </div>
                         <div class="clearfix"></div>
@@ -102,10 +107,10 @@
 <footer class="footer-area">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-xs-12 text-left">
+            <div class="col-md-12 col-xs-12 text-center">
                 <ul class="footer-menu">
                     <li class="wow fadeInLeft">
-                        <a href="#">&copy; 2018 版权所有 </a>
+                        <a href="#">&copy; 2018 版权所有</a>
                     </li>
                     <li class="wow fadeInLeft">
                         <a href="#">关于我们</a>

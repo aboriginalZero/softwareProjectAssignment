@@ -14,6 +14,8 @@ public class UsersQo extends PageQo{
     private String name;
     private String password;
     private String email;
+    private String role;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
 
@@ -23,6 +25,15 @@ public class UsersQo extends PageQo{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getName() {

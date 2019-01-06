@@ -56,20 +56,42 @@ public class UsersController {
     @RequestMapping("/allNews")
     public String allNews(Model model,Principal users) {
         Authentication authentication = (Authentication) users;
+        List<String> userroles = new ArrayList<>();
+        for (GrantedAuthority ga : authentication.getAuthorities()) {
+            userroles.add(ga.getAuthority());
+        }
+
+        boolean editrole = false;
+        if (!StringUtils.isEmpty(urlroles)) {
+            String[] resouces = urlroles.split(";");
+            for (String resource : resouces) {
+                String[] urls = resource.split("=");
+                if (urls[0].indexOf("edit") > 0) {
+                    String[] editoles = urls[1].split(",");
+                    for (String str : editoles) {
+                        str = str.trim();
+                        if (userroles.contains(str)) {
+                            editrole = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
 
         List<News> newsList = newsRepository.findAll();
-        model.addAttribute("users",users);
+        model.addAttribute("editrole",editrole);
+        model.addAttribute("username",users.getName());
         model.addAttribute("newsList", newsList);
         return "allNews";
     }
 
     @RequestMapping("/oneNews/{id}")
-    public String oneNews(Model model, @PathVariable Long id) {
-
+    public String oneNews(Model model,Principal users, @PathVariable Long id) {
         ConcreteNews concreteNews = new ConcreteNews();
 
         News news = newsRepository.findById(id);
-        System.out.println("新闻名称:" + news.getTitle());
+//        System.out.println("新闻名称:" + news.getTitle());
         concreteNews.setTitle(news.getTitle());
         concreteNews.setContent(news.getContent());
         concreteNews.setCreatedate(news.getCreatedate());
@@ -82,16 +104,13 @@ public class UsersController {
         for (int i = 0; i < len; i++) {
 //            System.out.println("评论内容为：" + commentsList.get(i).getContent());
 //            System.out.println("评论用户为：" + commentsList.get(i).getUsers().getName());
-
-            concreteCommentsList.add(
-                    new ConcreteComments(
-                            commentsList.get(i).getContent(),
-                            commentsList.get(i).getUsers().getName(),
-                            commentsList.get(i).getCreatedate())
-            );
+            Comments comments = new Comments();
+            comments = commentsList.get(i);
+            concreteCommentsList.add(new ConcreteComments(comments.getContent(),comments.getUsers().getName(),comments.getCreatedate()));
         }
         concreteNews.setConcreteCommentsList(concreteCommentsList);
         model.addAttribute("concreteNews", concreteNews);
+        model.addAttribute("usersName",users.getName());
         return "oneShow";
     }
 
@@ -196,17 +215,27 @@ public class UsersController {
         return "users/edit";
     }
 
+    @RequestMapping(value = "/updateInfo/{usersName}")
+    public String updateInfo(ModelMap model, @PathVariable String usersName) {
+        Users users = usersRepository.findByName(usersName);
+        System.out.println("用户名为:"+usersName);
+        model.addAttribute("users", users);
+        return "updateInfo";
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/update")
     @ResponseBody
     public String update(Users users) throws Exception {
-        BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
-        System.out.println("加密前" + users.getPassword());
-        users.setPassword(bpe.encode(users.getPassword()));
-        System.out.println("加密前" + users.getPassword());
-        usersRepository.save(users);
-        logger.info("修改->ID=" + users.getId());
+        Long id = users.getId();
+        Users oldUsers = usersRepository.findOne(id);
+        oldUsers.setName(users.getName());
+        oldUsers.setEmail(users.getEmail());
+
+        usersRepository.save(oldUsers);
+        logger.info("修改->ID=" + oldUsers.getId());
         return "1";
     }
+
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody

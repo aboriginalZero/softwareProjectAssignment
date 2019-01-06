@@ -36,48 +36,53 @@ public class MysqlTest {
     @Test
     public void insertSomeData(){
         //建立外键的要先删除
-        commentsRepository.deleteAll();
-        usersRepository.deleteAll();
-        newsRepository.deleteAll();
+//        commentsRepository.deleteAll();
+//        usersRepository.deleteAll();
+//        newsRepository.deleteAll();
 
-
-        News news = new News();
-        news.setTitle("新闻标题");
-        news.setContent("新闻内容");
-        newsRepository.save(news);
-        Assert.notNull(news.getId());
-
+//        News news = new News();
+//        news.setTitle("新闻标题");
+//        news.setContent("新闻内容");
+//        newsRepository.save(news);
+//        Assert.notNull(news.getId());
+//
+//        Users users = new Users();
+//        users.setName("abc");
+//        BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+//        users.setPassword(bpe.encode("abc"));
+////        这边加密处理还没做
+//        users.setEmail("350446550@qq.com");
+//        usersRepository.save(users);
+//        Assert.notNull(users.getId());
+//
+//        Users users1 = new Users();
+//        users1.setName("cyw");
+//        users1.setPassword(bpe.encode("cyw"));
+//        users1.setEmail("847681488@qq.com");
+//        usersRepository.save(users1);
+//        Assert.notNull(users1.getId());
+//
+//        Comments comments = new Comments();
+//        comments.setContent("评论内容");
+////        comments.setUsers(comments);
+//        comments.setNews(news);
+//        commentsRepository.save(comments);
+//        Assert.notNull(comments.getId());
+//
+//        Comments comments1 = commentsRepository.findByContent("评论内容");
+//        Assert.notNull(comments1);
+//
+//        Users users2 = usersRepository.findByName("cyw");
+//        Assert.notNull(users2);
+//
+//        comments1.setUsers(users2);
+//        commentsRepository.save(comments1);
         Users users = new Users();
-        users.setName("abc");
+        users.setName("tomax");
         BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
-        users.setPassword(bpe.encode("abc"));
-//        这边加密处理还没做
-        users.setEmail("350446550@qq.com");
+        users.setPassword(bpe.encode("tomax"));
+        users.setEmail("847681488@qq.com");
+        users.setRole("admin");
         usersRepository.save(users);
-        Assert.notNull(users.getId());
-
-        Users users1 = new Users();
-        users1.setName("cyw");
-//        这边加密处理还没做
-        users1.setPassword(bpe.encode("cyw"));
-        users1.setEmail("847681488@qq.com");
-        usersRepository.save(users1);
-        Assert.notNull(users1.getId());
-
-        Comments comments = new Comments();
-        comments.setContent("评论内容");
-//        comments.setUsers(comments);
-        comments.setNews(news);
-        commentsRepository.save(comments);
-        Assert.notNull(comments.getId());
-
-        Comments comments1 = commentsRepository.findByContent("评论内容");
-        Assert.notNull(comments1);
-
-        Users users2 = usersRepository.findByName("cyw");
-        Assert.notNull(users2);
-
-        comments1.setUsers(users2);
-        commentsRepository.save(comments1);
     }
 }

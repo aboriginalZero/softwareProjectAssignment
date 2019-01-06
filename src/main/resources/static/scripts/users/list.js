@@ -67,6 +67,7 @@ function fillData(data) {
         html += '<tr> ' +
             '<td>' + (v.id == null ? '' : v.id) + '</td>' +
             '<td>' + (v.name == null ? '' : v.name) + '</td>' +
+            '<td>' + (v.role == null ? '' : v.role) + '</td>' +
             // '<td>' + (v.password == null ? '' : v.password) + '</td>' +
             '<td>' + (v.email == null ? '' : v.email) + '</td>'
             // '<td>' + (v.createdate == null ? '' : getSmpFormatDateByLong(v.createdate, true)) + '</td>'

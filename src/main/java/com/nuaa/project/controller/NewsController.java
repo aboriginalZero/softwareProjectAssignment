@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther: cyw35
@@ -49,6 +50,18 @@ public class NewsController {
 
         return "news/index";
     }
+
+//    @RequestMapping("/searchList")
+//    @ResponseBody
+//    public List<News> getSearchList(News news){
+//        try {
+//            return newsRepository.findByTitle(news.getTitle() == null ? "%" : "%" + news.getTitle() + "%");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return  null;
+//    }
+
 
     @RequestMapping("/list")
     @ResponseBody

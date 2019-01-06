@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        设置一个使用自定义的登录页面URL
         http    .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/login").successHandler(loginSuccessHandler())
                 .and().authorizeRequests()
-                .antMatchers("/images/**", "/checkcode", "/scripts/**", "/styles/**").permitAll()
+                .antMatchers("/images/**", "/checkcode", "/frontEndDisplay/**", "/scripts/**", "/styles/**").permitAll()
                 .antMatchers(settings.getPermitall().split(",")).permitAll()
                 .anyRequest().authenticated()
 //                防止跨站请求伪造攻击的策略设置
@@ -118,6 +118,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         List<String> list = new ArrayList<String>();
         //加入需要排除阻止CSRF攻击的链接列表
         list.add("/rest/");
+        list.add("/comments/newComments/");
         csrfSecurityRequestMatcher.setExecludeUrls(list);
         return csrfSecurityRequestMatcher;
     }

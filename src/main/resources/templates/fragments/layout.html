@@ -23,9 +23,8 @@
 </head>
 <body>
 <div class="headerBox">
-    <div class="topBox">
+    <div class="topBox" >
         <div class="topLogo f-left">
-            <a href="#"><img th:src="@{/images/logo.png}"/></a>
         </div>
         <div class="new-nav">
             <h3>新闻系统管理后台</h3>
@@ -55,11 +54,7 @@
 <div class="footBox" th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript">
     $(function () {
-        $("#logout").click(function () {
-            if (confirm('您确定退出吗？')) {
-                $("#logoutform").submit();
-            }
-        });
+        logoutform
     });
 </script>
 </body>

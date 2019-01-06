@@ -22,5 +22,7 @@ public interface CommentsRepository extends JpaRepository<Comments,Long> {
 
     List<Comments> findAllByNewsId(Long id);
 
+    List<Comments> findAllByUsersId(Long id);
+
     Comments findByContent(String content);
 }
