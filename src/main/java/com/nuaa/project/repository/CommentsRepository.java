@@ -15,6 +15,8 @@ import java.util.List;
  * @Date: 2018/12/18 19:09
  * @Description:
  */
+//将这个接口定义为一个资源库，供整个项目使用
+//持久化组件，用于标注数据访问组件
 @Repository
 public interface CommentsRepository extends JpaRepository<Comments,Long> {
     @Query("select t from Comments t where t.content like :content")

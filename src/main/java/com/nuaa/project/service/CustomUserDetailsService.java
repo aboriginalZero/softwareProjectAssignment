@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2018/12/18 18:52
  * @Description:自定义的用户认证
  */
+//Spring Boot 将这些类纳入Spring容器中管理
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired

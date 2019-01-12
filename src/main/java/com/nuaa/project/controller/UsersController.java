@@ -54,7 +54,7 @@ public class UsersController {
 
 
     @RequestMapping("/allNews")
-    public String allNews(Model model,Principal users) {
+    public String allNews(Model model, Principal users) {
         Authentication authentication = (Authentication) users;
         List<String> userroles = new ArrayList<>();
         for (GrantedAuthority ga : authentication.getAuthorities()) {
@@ -80,14 +80,14 @@ public class UsersController {
         }
 
         List<News> newsList = newsRepository.findAll();
-        model.addAttribute("editrole",editrole);
-        model.addAttribute("username",users.getName());
+        model.addAttribute("editrole", editrole);
+        model.addAttribute("username", users.getName());
         model.addAttribute("newsList", newsList);
         return "allNews";
     }
 
     @RequestMapping("/oneNews/{id}")
-    public String oneNews(Model model,Principal users, @PathVariable Long id) {
+    public String oneNews(Model model, Principal users, @PathVariable Long id) {
         ConcreteNews concreteNews = new ConcreteNews();
 
         News news = newsRepository.findById(id);
@@ -106,11 +106,11 @@ public class UsersController {
 //            System.out.println("评论用户为：" + commentsList.get(i).getUsers().getName());
             Comments comments = new Comments();
             comments = commentsList.get(i);
-            concreteCommentsList.add(new ConcreteComments(comments.getContent(),comments.getUsers().getName(),comments.getCreatedate()));
+            concreteCommentsList.add(new ConcreteComments(comments.getContent(), comments.getUsers().getName(), comments.getCreatedate()));
         }
         concreteNews.setConcreteCommentsList(concreteCommentsList);
         model.addAttribute("concreteNews", concreteNews);
-        model.addAttribute("usersName",users.getName());
+        model.addAttribute("usersName", users.getName());
         return "oneShow";
     }
 
@@ -218,7 +218,7 @@ public class UsersController {
     @RequestMapping(value = "/updateInfo/{usersName}")
     public String updateInfo(ModelMap model, @PathVariable String usersName) {
         Users users = usersRepository.findByName(usersName);
-        System.out.println("用户名为:"+usersName);
+        System.out.println("用户名为:" + usersName);
         model.addAttribute("users", users);
         return "updateInfo";
     }

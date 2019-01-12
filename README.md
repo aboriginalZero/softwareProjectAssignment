@@ -14,3 +14,9 @@
 * 通过`Spring Data JPA`来持久化数据
 * 使用`maven` 管理 jar 包
 * 使用 `git` 控制版本更迭
+
+### 打开方式
+
+* 在本地数据库中新建一个`news_manage`数据库，将`/resources/DataSet/data.sql`中的数据导入
+* 保证本地的8080端口处于空闲状态
+* 运行`ProjectApplication`类中的`main`函数

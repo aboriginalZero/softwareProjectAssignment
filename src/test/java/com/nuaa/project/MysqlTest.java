@@ -1,5 +1,4 @@
 package com.nuaa.project;
-
 import com.nuaa.project.entity.Comments;
 import com.nuaa.project.entity.News;
 import com.nuaa.project.entity.Users;
@@ -36,9 +35,9 @@ public class MysqlTest {
     @Test
     public void insertSomeData(){
         //建立外键的要先删除
-//        commentsRepository.deleteAll();
-//        usersRepository.deleteAll();
-//        newsRepository.deleteAll();
+        commentsRepository.deleteAll();
+        usersRepository.deleteAll();
+        newsRepository.deleteAll();
 
 //        News news = new News();
 //        news.setTitle("新闻标题");

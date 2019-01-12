@@ -1,5 +1,4 @@
 package com.nuaa.project;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -33,7 +32,7 @@ public class JpaConfiguration {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/news_manage?characterEncoding=utf8&useSSL=false&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://47.100.127.167:3306/news_manage?characterEncoding=utf8&useSSL=false&serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
 

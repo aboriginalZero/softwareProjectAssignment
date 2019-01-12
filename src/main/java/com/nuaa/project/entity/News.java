@@ -1,6 +1,7 @@
 package com.nuaa.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,11 +14,16 @@ import java.util.Set;
  * @Date: 2018/12/18 17:16
  * @Description:新闻类
  */
+//声明每个持久化POJO类都是一个实体Bean
 @Entity
+//映射到数据库的数据表
 @Table(name = "my_news")
-public class News implements java.io.Serializable{
-    //唯一标识
+//lombok的一款插件，可以免写很多方法
+@Data
+public class News implements java.io.Serializable {
+    //唯一标识，指定表的主键
     @Id
+    //设置自增
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //标题
@@ -27,42 +33,4 @@ public class News implements java.io.Serializable{
     //创建时间
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
-    //评论
-
-    public News() {
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-
-    public Date getCreatedate() {
-        return createdate;
-    }
-
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
 }

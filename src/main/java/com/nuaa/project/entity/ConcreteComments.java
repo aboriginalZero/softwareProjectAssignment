@@ -1,5 +1,7 @@
 package com.nuaa.project.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -7,38 +9,12 @@ import java.util.Date;
  * @Date: 2019/1/2 15:49
  * @Description:具体评论类，方便前后台的数据传输
  */
+@Data
 public class ConcreteComments {
     private String content;
     private String userName;
     private Date createdate;
 
-    public ConcreteComments() {
-    }
-
-    public String getContent() {
-
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Date getCreatedate() {
-        return createdate;
-    }
-
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
 
     public ConcreteComments(String content, String userName, Date createdate) {
 

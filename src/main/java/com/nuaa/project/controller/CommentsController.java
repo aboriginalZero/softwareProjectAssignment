@@ -51,8 +51,6 @@ public class CommentsController {
     public String index(Model model, Principal users) {
 
         model.addAttribute("users", users);
-//        model.addAttribute("comments", comments);
-
         model.addAttribute("newcomments", true);
         model.addAttribute("editcomments", true);
         model.addAttribute("deletecomments", true);
